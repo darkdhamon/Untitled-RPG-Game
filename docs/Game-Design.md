@@ -9,6 +9,8 @@
 - The player can create their own starting character or choose a generated character.
 - The game is backed by an LLM that generates characters.
 - The LLM generates every NPC the player meets, including potential recruitable companions.
+- The LLM controls NPC dialogue and reactions.
+- Every character has a character sheet with stats. NPC dialogue and reactions must reflect the responding character's stats and current condition; for example, a fatigued character may give disoriented responses.
 - Design planning is a collaboration with the user.
 
 ## Open decisions
@@ -32,7 +34,15 @@ Confirmed: the player can create their own character or choose a generated chara
 
 Proposal for discussion: use the LLM to generate names, personalities, backgrounds, motivations, and character concepts. Let explicit game rules validate classes, attributes, abilities, and starting equipment so generated characters follow the same balance rules as custom characters.
 
-Still open: whether the LLM also selects mechanical details within those rules or is limited to narrative details; whether generated starting characters are editable before selection; and whether the LLM also drives NPC dialogue and reactions during play.
+Still open: whether the LLM also selects mechanical details within those rules or is limited to narrative details; whether generated starting characters are editable before selection; and whether players converse through free text, dialogue choices, or both.
+
+## Character sheets, dialogue, and reactions
+
+Confirmed: every character has a character sheet with stats. The LLM controls NPC dialogue and reactions and must respond in accordance with those stats and the character's current condition. A fatigued character may give disoriented responses.
+
+Proposal for discussion: distinguish enduring attributes and personality from changing conditions such as fatigue, injury, fear, or intoxication. Provide the responding NPC's current sheet, relevant memories, and immediate situation to the LLM for each interaction. Keep game state authoritative so generated dialogue reflects current values rather than inventing changes to them.
+
+Still open: the character sheet fields, condition severity and recovery rules, how conditions affect combat as well as dialogue, and whether personality or relationships influence recruitment and cooperation.
 
 ## Proposed first playable slice
 
@@ -42,6 +52,7 @@ This is a starting proposal, pending design decisions:
 - Demonstrate both custom character creation and selection of an LLM-generated character.
 - Enough playable characters to demonstrate the chosen combat style.
 - Meet one recruitable companion and demonstrate a battle with that companion.
+- Demonstrate NPC dialogue and reactions that change with the NPC's character-sheet state, including fatigue.
 - A small set of enemies, abilities, and equipment.
 - One complete battle loop: enter combat, take turns, win or lose, and return to exploration.
 - A reward and basic character progression.
@@ -58,6 +69,8 @@ Use this slice to establish whether combat and exploration are enjoyable before 
 | 2026-10-08 | Create a custom starting character or choose a generated character | Confirmed by user |
 | 2026-10-08 | Use an LLM to generate characters | Confirmed by user |
 | 2026-10-08 | The LLM generates every NPC the player meets, including potential companions | Confirmed by user |
+| 2026-10-08 | The LLM controls NPC dialogue and reactions | Confirmed by user |
+| 2026-10-08 | Every character has a stat sheet; LLM responses reflect stats and conditions, including fatigue | Confirmed by user |
 | 2026-10-08 | Untitled RPG Game as working repository title | Temporary placeholder |
 
 ## Planning sequence

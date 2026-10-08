@@ -6,6 +6,8 @@ The player starts alone and can build a party from characters they meet in the g
 
 Players can create their own starting character or choose a generated character. The game will use an LLM to generate characters, including every NPC the player meets and potential recruitable companions. The details of generation and other LLM responsibilities are still being planned.
 
+The LLM also controls NPC dialogue and reactions, reflecting each character's stat sheet and current condition. For example, fatigue may produce disoriented responses.
+
 ## Planning
 
 - [Game design](docs/Game-Design.md): confirmed requirements, open decisions, and a proposed first playable slice.
