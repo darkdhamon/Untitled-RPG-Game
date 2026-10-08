@@ -4,7 +4,7 @@ A fantasy video game with turn-based combat, currently in collaborative design p
 
 The player starts alone and can build a party from characters they meet in the game. The name is a placeholder. Platform, engine, visual style, party size, setting, and story are still to be decided.
 
-Players can create their own starting character or choose a generated character. The game will use an LLM for character generation; its detailed role is still being planned.
+Players can create their own starting character or choose a generated character. The game will use an LLM to generate characters, including every NPC the player meets and potential recruitable companions. The details of generation and other LLM responsibilities are still being planned.
 
 ## Planning
 
