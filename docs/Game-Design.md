@@ -71,7 +71,7 @@ Still open:
 - Which events provoke an attack of opportunity, including movement within or out of an opponent's reach.
 - What counts as a ready weapon and how weapon changes affect its allowance.
 - Whether the two-dagger rule applies to other combinations of ready weapons.
-- Unanswered question: should disadvantage mean rolling twice and using the lower result? The user has not decided whether to model the rules after D&D or GURPS. No dice mechanic or rules direction is selected. The second dual-dagger attack remains subject to disadvantage, with its mechanical definition pending.
+- Unanswered question: which disadvantage mechanic should this game use? The user described two alternatives: D&D-inspired means rolling twice and taking the lower result; GURPS-inspired means applying a difficulty modifier. Neither option is selected. The second dual-dagger attack remains subject to disadvantage, with its mechanical definition pending.
 - How disadvantage interacts with other modifiers.
 - The precise reset timing within the character's turn.
 - Whether movement can be split around actions. The user tentatively supported this while raising attacks of opportunity; it is not yet a confirmed rule.
@@ -159,6 +159,7 @@ Use this slice to establish whether combat and exploration are enjoyable before 
 | 2026-10-08 | One out-of-turn attack of opportunity per ready weapon per round; allowances reset on the character's turn | Confirmed by user |
 | 2026-10-08 | A character with a dagger in each hand may use one or both for an attack of opportunity; the second attack is at disadvantage when both are used | Confirmed by user |
 | 2026-10-08 | Definition of disadvantage; whether to model rules after D&D or GURPS | Unanswered; deferred by user |
+| 2026-10-08 | Disadvantage options: roll twice and take the lower result (D&D-inspired), or apply a difficulty modifier (GURPS-inspired) | Alternatives described by user; choice remains unanswered |
 | 2026-10-08 | Combat, character, party, and dungeon systems are MVP; LLM features are post-MVP | Confirmed by user |
 | 2026-10-08 | Characters move around a grid; display accounts for terrain height and flying characters | Confirmed by user |
 | 2026-10-08 | A 3D battlefield with a rotatable camera | Confirmed by user |
