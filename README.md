@@ -4,9 +4,9 @@ A fantasy video game with turn-based combat, currently in collaborative design p
 
 The player starts alone and can build a party from characters they meet in the game. The name is a placeholder. Platform, engine, visual style, party size, setting, and story are still to be decided.
 
-Players can create their own starting character or choose a generated character. The game will use an LLM to generate characters, including every NPC the player meets and potential recruitable companions. The details of generation and other LLM responsibilities are still being planned.
+The MVP consists of the combat, character, party, and dungeon systems and will be playable without an LLM. Combat outcomes are resolved by the combat system, with status effects able to affect actions.
 
-The LLM also controls NPC dialogue and reactions, reflecting each character's stat sheet and current condition. For example, fatigue may produce disoriented responses.
+The full game will let players create their own starting character or choose a generated character. Post-MVP, an LLM will generate characters, including every NPC the player meets, and control NPC dialogue and reactions according to each character's stat sheet and condition. The LLM may submit combat commands, but the combat system determines their outcomes.
 
 ## Planning
 

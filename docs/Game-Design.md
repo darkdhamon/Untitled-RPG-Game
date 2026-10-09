@@ -5,6 +5,9 @@
 - An RPG video game.
 - A fantasy setting.
 - Turn-based gameplay and combat.
+- The combat system owns combat rules and outcomes. The LLM may submit commands to it but does not determine outcomes.
+- Status effects may affect actions in the combat system.
+- MVP systems: combat, characters, parties, and dungeons. LLM features are outside the MVP.
 - The player starts with one character and can build a party by recruiting characters they meet in the game.
 - The player can create their own starting character or choose a generated character.
 - The game is backed by an LLM that generates characters.
@@ -27,8 +30,32 @@ Resolve these through discussion, recording each agreed decision below.
 8. Production: engine, available time, budget, asset sources, and licensing.
 9. Accessibility, difficulty options, save behavior, and tutorial approach.
 10. LLM generation: which character details it generates, generation timing, persistence, and local or hosted execution.
+11. Dungeons: layout, exploration, encounters, completion rules, and authored or procedural content.
+
+## MVP scope
+
+Confirmed MVP systems:
+
+| System | Confirmed scope | Details to decide |
+| --- | --- | --- |
+| Combat | Turn-based combat; the combat system resolves outcomes; status effects may affect actions | Positioning, turn order, available actions, resolution rules, and status effects |
+| Characters | Characters with stat sheets | Attributes, creation options for MVP, abilities, equipment, and progression |
+| Parties | Start with one character and build a party from characters encountered | Recruitment rules, party size, and control of party members |
+| Dungeons | A dungeon system | Layout, exploration, encounters, completion rules, and content creation |
+
+All LLM features are post-MVP: LLM character generation, NPC dialogue and reactions, and any LLM submission of combat commands. The MVP must be playable without an LLM.
+
+Proposal for discussion: use predefined NPCs and simple rules-based enemy behavior for the MVP, then integrate LLM features into the existing systems later. The non-LLM method for offering generated starting characters remains undecided.
+
+## Combat authority
+
+Confirmed: the underlying combat system is not controlled by the LLM. The LLM may send commands, but the combat system determines their outcomes. Status effects may affect combat actions.
+
+Proposal for discussion: all action sources use the same command interface. The combat system validates the acting character, turn, targets, costs, and status restrictions, resolves the action using game rules, and records the resulting state. A future LLM can request an action and receive its result without directly changing health, status effects, or other combat state.
 
 ## Character creation and LLM generation
+
+The LLM features in this section are post-MVP requirements.
 
 Confirmed: the player can create their own character or choose a generated character. An LLM provides character generation and generates every NPC the player meets, including potential recruitable companions.
 
@@ -38,23 +65,24 @@ Still open: whether the LLM also selects mechanical details within those rules o
 
 ## Character sheets, dialogue, and reactions
 
+Character sheets are MVP. LLM dialogue and reactions are post-MVP.
+
 Confirmed: every character has a character sheet with stats. The LLM controls NPC dialogue and reactions and must respond in accordance with those stats and the character's current condition. A fatigued character may give disoriented responses.
 
 Proposal for discussion: distinguish enduring attributes and personality from changing conditions such as fatigue, injury, fear, or intoxication. Provide the responding NPC's current sheet, relevant memories, and immediate situation to the LLM for each interaction. Keep game state authoritative so generated dialogue reflects current values rather than inventing changes to them.
 
-Still open: the character sheet fields, condition severity and recovery rules, how conditions affect combat as well as dialogue, and whether personality or relationships influence recruitment and cooperation.
+Still open: the character sheet fields, condition severity and recovery rules, the specific effects of conditions on combat actions and dialogue, and whether personality or relationships influence recruitment and cooperation.
 
 ## Proposed first playable slice
 
-This is a starting proposal, pending design decisions:
+This is a proposal for an MVP slice covering the four confirmed systems, pending detailed design decisions:
 
-- One small location and a short quest.
-- Demonstrate both custom character creation and selection of an LLM-generated character.
-- Enough playable characters to demonstrate the chosen combat style.
-- Meet one recruitable companion and demonstrate a battle with that companion.
-- Demonstrate NPC dialogue and reactions that change with the NPC's character-sheet state, including fatigue.
+- One small dungeon with an entrance, encounters, and a completion objective.
+- A starting character with a stat sheet and the agreed MVP creation options.
+- One predefined recruitable companion and a battle with that companion.
 - A small set of enemies, abilities, and equipment.
-- One complete battle loop: enter combat, take turns, win or lose, and return to exploration.
+- One complete battle loop: enter combat, take turns, resolve outcomes through the combat system, win or lose, and return to dungeon exploration.
+- At least one status effect demonstrating its impact on combat actions.
 - A reward and basic character progression.
 - Save and load the player's progress.
 
@@ -71,8 +99,11 @@ Use this slice to establish whether combat and exploration are enjoyable before 
 | 2026-10-08 | The LLM generates every NPC the player meets, including potential companions | Confirmed by user |
 | 2026-10-08 | The LLM controls NPC dialogue and reactions | Confirmed by user |
 | 2026-10-08 | Every character has a stat sheet; LLM responses reflect stats and conditions, including fatigue | Confirmed by user |
+| 2026-10-08 | Combat system resolves outcomes; the LLM may submit commands but does not determine outcomes | Confirmed by user |
+| 2026-10-08 | Status effects may affect combat actions | Confirmed by user |
+| 2026-10-08 | Combat, character, party, and dungeon systems are MVP; LLM features are post-MVP | Confirmed by user |
 | 2026-10-08 | Untitled RPG Game as working repository title | Temporary placeholder |
 
 ## Planning sequence
 
-Agree on the player experience, define combat and exploration, outline the world and characters, then select technology and turn the first playable slice into scoped issues with acceptance criteria.
+Define the MVP combat, character, party, and dungeon systems, choose a platform and technology, then turn the first playable slice into scoped issues with acceptance criteria. Preserve LLM requirements for post-MVP integration.
