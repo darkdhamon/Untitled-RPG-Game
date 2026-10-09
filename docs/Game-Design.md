@@ -11,7 +11,7 @@
 - Combat uses a 3D battlefield with a rotatable camera.
 - The tactical grid is square.
 - Diagonal movement is allowed. Characters cannot move through blocked squares.
-- Movement range uses Euclidean distance, including diagonal movement. The rounded distance of a move must not exceed the character's effective movement for the turn, and the route must respect blocked squares.
+- Movement range sums the Euclidean length of every step along the traversed route, including diagonal steps, then rounds the total to the nearest whole number. That rounded total must not exceed the character's effective movement for the turn, and the route must respect blocked squares.
 - MVP systems: combat, characters, parties, and dungeons. LLM features are outside the MVP.
 - The player starts with one character and can build a party by recruiting characters they meet in the game.
 - The player can create their own starting character or choose a generated character.
@@ -66,7 +66,7 @@ Proposal for discussion: track terrain elevation separately from a character's h
 
 Still open:
 
-- Rounding method for Euclidean movement distance; whether range measures start-to-end displacement or the traveled route; how multiple moves consume the turn's movement allowance; and diagonal corner-crossing restrictions.
+- How multiple moves consume the turn's movement allowance, exact halfway rounding behavior, and diagonal corner-crossing restrictions.
 - Discrete height levels or continuous height values.
 - Whether flight allows different characters to occupy the same horizontal cell at different heights.
 - Climbing, jumping, falling, takeoff, landing, and flight restrictions.
@@ -75,9 +75,13 @@ Still open:
 
 ### Movement range
 
-Confirmed: diagonal movement is allowed, and characters cannot move through blocked squares. A move must fit within the character's effective movement for the turn using rounded Euclidean distance.
+Confirmed: diagonal movement is allowed, and characters cannot move through blocked squares. Measure the Euclidean length of each step along the actual route, sum those lengths, and round the total to the nearest whole number. A move is within range when that rounded route length does not exceed the character's effective movement for the turn. Do not use straight-line displacement between the start and destination or round individual steps.
 
-For a flat grid with one distance unit per square, Euclidean displacement is `sqrt(dx^2 + dy^2)`. This illustrates the distance calculation; the rounding method and whether the budget uses displacement or traveled route length remain undecided. Elevation and flight distance rules also remain open.
+For a flat grid with one distance unit per square, each N/S/E/W step has length `1`, and each diagonal step has length `sqrt(2)` (approximately `1.414`). The move's cost is `roundNearest(sum(stepLengths))`.
+
+User example: a destination two squares north and one square west can be reached by stepping NW, then N. The route length is `sqrt(2) + 1`, approximately `2.414`, which rounds to a movement cost of `2`. A route N, N, W to the same destination has length `3` and costs `3`. Detours therefore count toward movement range.
+
+Still open: elevation and flight distance rules, exact halfway rounding behavior, and how movement costs accumulate when a character makes multiple separate moves during one turn.
 
 Movement validation must check both the distance allowance and a traversable route. Passing the distance check does not authorize crossing blocked squares.
 
@@ -135,7 +139,7 @@ Use this slice to establish whether combat and exploration are enjoyable before 
 | 2026-10-08 | A 3D battlefield with a rotatable camera | Confirmed by user |
 | 2026-10-08 | Use a square tactical grid | Confirmed by user |
 | 2026-10-08 | Allow diagonal movement; prohibit movement through blocked squares | Confirmed by user |
-| 2026-10-08 | Rounded Euclidean movement distance must not exceed effective movement for the turn | Confirmed by user; rounding and route accounting details remain open |
+| 2026-10-08 | Sum Euclidean lengths of route steps, then round the total to nearest; cost must not exceed effective movement for the turn | Confirmed by user; clarified with NW then N costing 2 |
 | 2026-10-08 | Untitled RPG Game as working repository title | Temporary placeholder |
 
 ## Planning sequence
