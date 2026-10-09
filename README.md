@@ -2,7 +2,7 @@
 
 A fantasy video game with turn-based combat, currently in collaborative design planning.
 
-The player starts alone and can build a party from characters they meet in the game. The name is a placeholder. Platform, engine, visual style, party size, setting, and story are still to be decided.
+The player starts alone and can build a party from characters they meet in the game. The name is a placeholder. Platform, engine, visual style, party size, setting, and story are still to be decided. Combat will use a 3D battlefield with a rotatable camera.
 
 The MVP consists of the combat, character, party, and dungeon systems and will be playable without an LLM. Characters move around a tactical grid, and the display accounts for terrain height and flying characters. Combat outcomes are resolved by the combat system, with status effects able to affect actions.
 
