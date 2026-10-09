@@ -11,6 +11,7 @@
 - Combat uses a 3D battlefield with a rotatable camera.
 - The tactical grid is square.
 - Diagonal movement is allowed. Characters cannot move through blocked squares.
+- Blocked orthogonal neighbors do not prevent a diagonal step: if N and W are blocked, a character may still move NW when the NW square is traversable.
 - Movement range sums the Euclidean length of every step along the traversed route, including diagonal steps, then rounds the total to the nearest whole number. That rounded total must not exceed the character's effective movement for the turn, and the route must respect blocked squares.
 - MVP systems: combat, characters, parties, and dungeons. LLM features are outside the MVP.
 - The player starts with one character and can build a party by recruiting characters they meet in the game.
@@ -66,7 +67,7 @@ Proposal for discussion: track terrain elevation separately from a character's h
 
 Still open:
 
-- How multiple moves consume the turn's movement allowance, exact halfway rounding behavior, and diagonal corner-crossing restrictions.
+- How multiple moves consume the turn's movement allowance and exact halfway rounding behavior.
 - Discrete height levels or continuous height values.
 - Whether flight allows different characters to occupy the same horizontal cell at different heights.
 - Climbing, jumping, falling, takeoff, landing, and flight restrictions.
@@ -84,6 +85,8 @@ User example: a destination two squares north and one square west can be reached
 Still open: elevation and flight distance rules, exact halfway rounding behavior, and how movement costs accumulate when a character makes multiple separate moves during one turn.
 
 Movement validation must check both the distance allowance and a traversable route. Passing the distance check does not authorize crossing blocked squares.
+
+Diagonal steps may pass between blocked orthogonal neighbors. For example, blocked N and W squares do not prevent a step into a traversable NW square. Route validation must not reject that diagonal step solely because its adjacent orthogonal squares are blocked; the character still cannot enter a blocked destination square.
 
 ## Character creation and LLM generation
 
@@ -139,6 +142,7 @@ Use this slice to establish whether combat and exploration are enjoyable before 
 | 2026-10-08 | A 3D battlefield with a rotatable camera | Confirmed by user |
 | 2026-10-08 | Use a square tactical grid | Confirmed by user |
 | 2026-10-08 | Allow diagonal movement; prohibit movement through blocked squares | Confirmed by user |
+| 2026-10-08 | Allow diagonal passage between blocked orthogonal neighbors; blocked N and W do not prevent movement into traversable NW | Confirmed by user |
 | 2026-10-08 | Sum Euclidean lengths of route steps, then round the total to nearest; cost must not exceed effective movement for the turn | Confirmed by user; clarified with NW then N costing 2 |
 | 2026-10-08 | Untitled RPG Game as working repository title | Temporary placeholder |
 
