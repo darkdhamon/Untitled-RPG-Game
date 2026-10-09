@@ -10,6 +10,8 @@
 - Characters can move around a tactical grid. The display must account for terrain height and flying characters.
 - Combat uses a 3D battlefield with a rotatable camera.
 - The tactical grid is square.
+- Diagonal movement is allowed. Characters cannot move through blocked squares.
+- Movement range uses Euclidean distance, including diagonal movement. The rounded distance of a move must not exceed the character's effective movement for the turn, and the route must respect blocked squares.
 - MVP systems: combat, characters, parties, and dungeons. LLM features are outside the MVP.
 - The player starts with one character and can build a party by recruiting characters they meet in the game.
 - The player can create their own starting character or choose a generated character.
@@ -64,12 +66,20 @@ Proposal for discussion: track terrain elevation separately from a character's h
 
 Still open:
 
-- Whether diagonal movement is allowed, its movement cost, and corner-crossing restrictions.
+- Rounding method for Euclidean movement distance; whether range measures start-to-end displacement or the traveled route; how multiple moves consume the turn's movement allowance; and diagonal corner-crossing restrictions.
 - Discrete height levels or continuous height values.
 - Whether flight allows different characters to occupy the same horizontal cell at different heights.
 - Climbing, jumping, falling, takeoff, landing, and flight restrictions.
 - How elevation and flight affect movement costs, attack range, line of sight, cover, and targeting.
 - Camera controls and how the display handles characters obscured by terrain or other characters.
+
+### Movement range
+
+Confirmed: diagonal movement is allowed, and characters cannot move through blocked squares. A move must fit within the character's effective movement for the turn using rounded Euclidean distance.
+
+For a flat grid with one distance unit per square, Euclidean displacement is `sqrt(dx^2 + dy^2)`. This illustrates the distance calculation; the rounding method and whether the budget uses displacement or traveled route length remain undecided. Elevation and flight distance rules also remain open.
+
+Movement validation must check both the distance allowance and a traversable route. Passing the distance check does not authorize crossing blocked squares.
 
 ## Character creation and LLM generation
 
@@ -124,6 +134,8 @@ Use this slice to establish whether combat and exploration are enjoyable before 
 | 2026-10-08 | Characters move around a grid; display accounts for terrain height and flying characters | Confirmed by user |
 | 2026-10-08 | A 3D battlefield with a rotatable camera | Confirmed by user |
 | 2026-10-08 | Use a square tactical grid | Confirmed by user |
+| 2026-10-08 | Allow diagonal movement; prohibit movement through blocked squares | Confirmed by user |
+| 2026-10-08 | Rounded Euclidean movement distance must not exceed effective movement for the turn | Confirmed by user; rounding and route accounting details remain open |
 | 2026-10-08 | Untitled RPG Game as working repository title | Temporary placeholder |
 
 ## Planning sequence
