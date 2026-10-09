@@ -7,6 +7,7 @@
 - Turn-based gameplay and combat.
 - The combat system owns combat rules and outcomes. The LLM may submit commands to it but does not determine outcomes.
 - Status effects may affect actions in the combat system.
+- Each character gets one attack of opportunity per ready weapon, usable outside their turn per round. These allowances reset on that character's turn.
 - Characters can move around a tactical grid. The display must account for terrain height and flying characters.
 - Combat uses a 3D battlefield with a rotatable camera.
 - The tactical grid is square.
@@ -58,6 +59,20 @@ Proposal for discussion: use predefined NPCs and simple rules-based enemy behavi
 Confirmed: the underlying combat system is not controlled by the LLM. The LLM may send commands, but the combat system determines their outcomes. Status effects may affect combat actions.
 
 Proposal for discussion: all action sources use the same command interface. The combat system validates the acting character, turn, targets, costs, and status restrictions, resolves the action using game rules, and records the resulting state. A future LLM can request an action and receive its result without directly changing health, status effects, or other combat state.
+
+## Attacks of opportunity
+
+Confirmed: each character has one attack of opportunity per ready weapon to use outside their turn per round. The allowances reset on that character's turn. The allowance is per weapon rather than one shared attack of opportunity for the entire character.
+
+Still open:
+
+- Which events provoke an attack of opportunity, including movement within or out of an opponent's reach.
+- What counts as a ready weapon and how weapon changes affect its allowance.
+- Whether one provoking event permits attacks with multiple ready weapons or requires choosing one.
+- The precise reset timing within the character's turn.
+- Whether movement can be split around actions. The user tentatively supported this while raising attacks of opportunity; it is not yet a confirmed rule.
+
+A Disengage action has been suggested but is not a confirmed requirement.
 
 ## Tactical grid, elevation, and flight
 
@@ -137,6 +152,7 @@ Use this slice to establish whether combat and exploration are enjoyable before 
 | 2026-10-08 | Every character has a stat sheet; LLM responses reflect stats and conditions, including fatigue | Confirmed by user |
 | 2026-10-08 | Combat system resolves outcomes; the LLM may submit commands but does not determine outcomes | Confirmed by user |
 | 2026-10-08 | Status effects may affect combat actions | Confirmed by user |
+| 2026-10-08 | One out-of-turn attack of opportunity per ready weapon per round; allowances reset on the character's turn | Confirmed by user |
 | 2026-10-08 | Combat, character, party, and dungeon systems are MVP; LLM features are post-MVP | Confirmed by user |
 | 2026-10-08 | Characters move around a grid; display accounts for terrain height and flying characters | Confirmed by user |
 | 2026-10-08 | A 3D battlefield with a rotatable camera | Confirmed by user |
