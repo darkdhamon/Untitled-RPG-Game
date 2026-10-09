@@ -9,6 +9,7 @@
 - Status effects may affect actions in the combat system.
 - Characters can move around a tactical grid. The display must account for terrain height and flying characters.
 - Combat uses a 3D battlefield with a rotatable camera.
+- The tactical grid is square.
 - MVP systems: combat, characters, parties, and dungeons. LLM features are outside the MVP.
 - The player starts with one character and can build a party by recruiting characters they meet in the game.
 - The player can create their own starting character or choose a generated character.
@@ -25,7 +26,7 @@ Resolve these through discussion, recording each agreed decision below.
 1. Character creation: customization choices, generated-character selection, recruitment conditions, and party size.
 2. Target platform and controls.
 3. Presentation: visual style, presentation outside combat, and camera controls for the 3D battlefield.
-4. Combat: grid geometry, movement rules, elevation and flight rules, initiative, actions, resources, and victory conditions.
+4. Combat: square-grid movement rules, elevation and flight rules, initiative, actions, resources, and victory conditions.
 5. World: tone, magic, cultures, central conflict, and exploration structure.
 6. Characters: party size, recruitment, classes, progression, and equipment.
 7. Story: player role, choices, quest structure, and intended scope.
@@ -40,7 +41,7 @@ Confirmed MVP systems:
 
 | System | Confirmed scope | Details to decide |
 | --- | --- | --- |
-| Combat | Turn-based combat with grid movement on a 3D battlefield and a rotatable camera; display accounts for terrain height and flying characters; combat system resolves outcomes; status effects may affect actions | Grid geometry, elevation and flight rules, camera controls, turn order, available actions, resolution rules, and status effects |
+| Combat | Turn-based combat with square-grid movement on a 3D battlefield and a rotatable camera; display accounts for terrain height and flying characters; combat system resolves outcomes; status effects may affect actions | Movement rules, elevation and flight rules, camera controls, turn order, available actions, resolution rules, and status effects |
 | Characters | Characters with stat sheets | Attributes, creation options for MVP, abilities, equipment, and progression |
 | Parties | Start with one character and build a party from characters encountered | Recruitment rules, party size, and control of party members |
 | Dungeons | A dungeon system | Layout, exploration, encounters, completion rules, and content creation |
@@ -57,13 +58,13 @@ Proposal for discussion: all action sources use the same command interface. The 
 
 ## Tactical grid, elevation, and flight
 
-Confirmed: characters can move around a grid on a 3D battlefield with a rotatable camera. The display must account for terrain height and flying characters. These are requirements for the MVP combat system.
+Confirmed: characters can move around a square grid on a 3D battlefield with a rotatable camera. The display must account for terrain height and flying characters. These are requirements for the MVP combat system.
 
 Proposal for discussion: track terrain elevation separately from a character's height above the terrain, so a grounded character on a raised platform and a flying character above that platform can be represented distinctly. Make the occupied grid position and height readable through visual indicators. Camera tilt, zoom, panning, rotation behavior, and the rendering style remain undecided.
 
 Still open:
 
-- Square or hexagonal grid; diagonal movement if using squares.
+- Whether diagonal movement is allowed, its movement cost, and corner-crossing restrictions.
 - Discrete height levels or continuous height values.
 - Whether flight allows different characters to occupy the same horizontal cell at different heights.
 - Climbing, jumping, falling, takeoff, landing, and flight restrictions.
@@ -122,6 +123,7 @@ Use this slice to establish whether combat and exploration are enjoyable before 
 | 2026-10-08 | Combat, character, party, and dungeon systems are MVP; LLM features are post-MVP | Confirmed by user |
 | 2026-10-08 | Characters move around a grid; display accounts for terrain height and flying characters | Confirmed by user |
 | 2026-10-08 | A 3D battlefield with a rotatable camera | Confirmed by user |
+| 2026-10-08 | Use a square tactical grid | Confirmed by user |
 | 2026-10-08 | Untitled RPG Game as working repository title | Temporary placeholder |
 
 ## Planning sequence
